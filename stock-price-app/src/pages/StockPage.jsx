@@ -10,7 +10,12 @@ import {
 import StockChart from '../components/StockChart';
 import { fetchStocks, fetchStockPriceHistory } from '../services/stockService';
 
+/**
+ * Stock Page Component
+ * Displays stock selection and price chart
+ */
 const StockPage = () => {
+  // State for stocks, selected ticker, and stock data
   const [stocks, setStocks] = useState({});
   const [selectedTicker, setSelectedTicker] = useState('');
   const [stockData, setStockData] = useState([]);
@@ -59,6 +64,7 @@ const StockPage = () => {
         Stock Price Tracker
       </Typography>
 
+      {/* Stock Selection Dropdown */}
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
         <Typography variant="subtitle1" sx={{ mr: 2 }}>
           Select Stock:
@@ -78,6 +84,7 @@ const StockPage = () => {
         </FormControl>
       </Box>
 
+      {/* Stock Chart Component */}
       <StockChart 
         stockData={stockData} 
         ticker={selectedTicker} 

@@ -18,7 +18,15 @@ import {
   Paper 
 } from '@mui/material';
 
+/**
+ * Stock Chart Component
+ * Displays stock price history with interactive features
+ * @param {Object} props - Component props
+ * @param {Array} props.stockData - Array of stock price data points
+ * @param {string} props.ticker - Stock ticker symbol
+ */
 const StockChart = ({ stockData, ticker }) => {
+  // Time frame state
   const [timeFrame, setTimeFrame] = useState(50);
 
   // Calculate average price
@@ -41,6 +49,7 @@ const StockChart = ({ stockData, ticker }) => {
 
   return (
     <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
+      {/* Header with stock ticker and time frame selector */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h6">{ticker} Stock Price</Typography>
         <FormControl variant="outlined" size="small" sx={{ minWidth: 120 }}>
@@ -58,6 +67,7 @@ const StockChart = ({ stockData, ticker }) => {
         </FormControl>
       </Box>
 
+      {/* Stock price chart */}
       {chartData.length > 0 ? (
         <LineChart width={800} height={400} data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />

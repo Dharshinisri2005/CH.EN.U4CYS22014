@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Typography, 
   Box, 
@@ -186,47 +186,6 @@ const CorrelationHeatmap = () => {
           ))}
         </Box>
       </Box>
-
-      {/* Stock Details Overlay */}
-      {selectedStock && (
-        <Paper 
-          elevation={4} 
-          sx={{ 
-            position: 'absolute', 
-            top: '50%', 
-            left: '50%', 
-            transform: 'translate(-50%, -50%)', 
-            p: 3,
-            zIndex: 10,
-            minWidth: 300 
-          }}
-        >
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            {Object.keys(stocks).find(key => stocks[key] === selectedStock)} ({selectedStock}) Details
-          </Typography>
-          <Typography variant="body1">
-            Correlations in the last {timeFrame} minutes:
-          </Typography>
-          {Object.entries(correlations[selectedStock] || {})
-            .filter(([ticker]) => ticker !== selectedStock)
-            .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))
-            .slice(0, 5)
-            .map(([ticker, correlation]) => (
-              <Box key={ticker} sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-                <Typography variant="body2">{ticker}</Typography>
-                <Typography 
-                  variant="body2" 
-                  sx={{ 
-                    color: correlation > 0 ? 'green' : 'red',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  {correlation.toFixed(2)}
-                </Typography>
-              </Box>
-            ))}
-        </Paper>
-      )}
     </Paper>
   );
 };
